@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
+var app = express();
+
 
 // connect with local mongodb
 if (!global.db) {
@@ -11,13 +14,7 @@ if (!global.db) {
 
 router.get('/home', function (req, res) {
   // res.render('templates/home.ejs');
-  collection = global.db.collection('artists')
-
-
-  // collection.findOne({}, function (err, doc){
-  //   if (err) throw err;
-  //   console.log(doc)
-  // });
+  var collection = global.db.collection('artists')
 
   collection.find().toArray(function(err, artists) {
     formattedArtists = artists.map(function(artist) {
@@ -30,31 +27,23 @@ router.get('/home', function (req, res) {
     });
     res.render('templates/home.ejs', {artists: formattedArtists});
   });
-
-
 });
 
+// router.get('/home', function (req, res) {
+//   res.render('templates/home');
+// });
+
 router.post('/home', function(req, res) {
+  var collection = global.db.collection('artists')
   console.log(req.body)
+  console.log(res.body)
   // collection.save(req.body)
+  res.redirect('/home')
   });
 
 
 
-// router.get('/artists', function (req, res) {
-//   res.render('templates/artists.ejs');
 
-// });
-
-// router.get('/songs', function (req, res) {
-//   res.render('templates/songs.ejs')
-
-// });
-
-// router.get('/albums', function (req, res) {
-//   res.render('templates/albums.ejs')
-
-// });
 
 
 

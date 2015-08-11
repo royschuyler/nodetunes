@@ -4,6 +4,17 @@ var lessCSS = require('less-middleware');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var app = express();
+var mongo = require('mongodb').MongoClient;
+
+if (!global.db) {
+    mongo.connect('mongodb://localhost:27017/artists', function(err, db) {
+    global.db = db;
+  });
+};
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 
 
@@ -19,6 +30,7 @@ app.use('/world', routes);
 app.use('/artists', routes);
 app.use('/albums', routes);
 app.use('/songs', routes);
+
 
 
 var port = process.env.PORT || 3000;
