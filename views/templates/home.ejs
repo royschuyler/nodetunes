@@ -8,35 +8,38 @@
   <form action="/home" method="post">
     <div>
         <label for="name">Name:</label>
-        <input type="text"/>
+        <input name="name" type="text"/>
     </div>
     <div>
-        <label for="mail">Genre:</label>
-        <input type="text"/>
+        <label for="Genre">Genre:</label>
+        <input name="genre" type="text"/>
     </div>
     <div>
         <label for="bio">Bio:</label>
-        <textarea></textarea>
+        <textarea name="bio"></textarea>
     </div>
     <input type='submit' value='Complete'>
 </form>
     <h3>Artists</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Genre</th>
-        <th>Bio</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>Sting</td>
-          <td>Rock</td>
-          <td>Rock Music, rich AF</td>
-        </tr>
-    </tbody>
-  </table>
+      <h3> Artists </h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Bio</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% artists.forEach(function(artist) { %>
+              <tr>
+                <td><%= artist.name %></td>
+                <td><%= artist.genre %></td>
+                <td><%= artist.bio %></td>
+              </tr>
+            <% }); %>
+        </tbody>
+      </table>
 
   </body>
 </html>
