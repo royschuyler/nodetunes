@@ -4,6 +4,25 @@
     <title>Artists</title>
   </head>
   <body>
-    <h1>Artists!</h1>
+      <h3> Artists </h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Bio</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% artists.forEach(function(artist) { %>
+              <tr>
+                <td><%= artist.name %></td>
+                <td><%= artist.genre %></td>
+                <td><%= artist.bio %></td>
+              </tr>
+            <% }); %>
+        </tbody>
+      </table>
+
   </body>
 </html>

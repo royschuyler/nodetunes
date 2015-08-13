@@ -29,17 +29,30 @@ router.get('/home', function (req, res) {
   });
 });
 
-// router.get('/home', function (req, res) {
-//   res.render('templates/home');
-// });
-
 router.post('/home', function(req, res) {
   var collection = global.db.collection('artists')
   console.log(req.body)
   console.log(res.body)
-  // collection.save(req.body)
-  res.redirect('/home')
+  collection.save(req.body)
+  res.redirect('/artists')
   });
+
+router.get('/artists', function (req, res) {
+  var collection = global.db.collection('artists')
+  collection.find().toArray(function(err, artists) {
+    formattedArtists = artists.map(function(artist) {
+      return {
+        _id: artist._id,
+        name: artist.name,
+        genre: artist.genre,
+        bio: artist.bio
+      };
+    });
+    res.render('templates/artists.ejs', {artists: formattedArtists});
+  });
+});
+
+
 
 
 
