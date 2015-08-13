@@ -19,11 +19,14 @@
                 <td><%= artist.name %></td>
                 <td><%= artist.genre %></td>
                 <td><%= artist.bio %></td>
-                <td><input type="submit" value="x"></td>
+                <td>
+                  <form action="/artists/<%= artist._id %>" method="post">
+                    <input type="submit" value="x">
+                  </form>
+                </td>
               </tr>
             <% }); %>
         </tbody>
       </table>
-
   </body>
 </html>

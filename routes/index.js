@@ -12,6 +12,9 @@ if (!global.db) {
   });
 };
 
+//-------------------------------------------------------------------------
+
+
 router.get('/home', function (req, res) {
   // res.render('templates/home.ejs');
   var collection = global.db.collection('artists')
@@ -31,11 +34,13 @@ router.get('/home', function (req, res) {
 
 router.post('/home', function(req, res) {
   var collection = global.db.collection('artists')
-  console.log(req.body)
-  console.log(res.body)
   collection.save(req.body)
   res.redirect('/artists')
   });
+
+
+//-----------------------------------------------------------------------
+
 
 router.get('/artists', function (req, res) {
   var collection = global.db.collection('artists')
@@ -52,10 +57,12 @@ router.get('/artists', function (req, res) {
   });
 });
 
-
-
-
-
+router.post('/artists/:id', function(req, res) {
+  var collection = global.db.collection('artists')
+  console.log(ObjectID(req.params.id))
+  collection.remove({_id: ObjectID(req.params.id)})
+    res.redirect('/artists')
+  });
 
 
 
