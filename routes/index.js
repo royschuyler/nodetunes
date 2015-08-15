@@ -66,6 +66,15 @@ router.post('/artists/:id', function(req, res) {
     res.redirect('/artists')
   });
 
+//-------------------------------------------------------------------------
+
+router.get('/albums/:name', function (req, res) {
+renderName = req.params.name
+  res.render('templates/albums.ejs', {name: renderName});
+});
+
+
+
 
 
 

@@ -16,9 +16,10 @@
         <tbody>
             <% artists.forEach(function(artist) { %>
               <tr>
-                <td><%= artist.name %></td>
+                <td><a href="/albums/<%= artist.name %>"><%= artist.name %></a></td>
                 <td><%= artist.genre %></td>
                 <td><%= artist.bio %></td>
+                <td><a href="https://en.wikipedia.org/wiki/<%= artist.name %>">wiki</a></td>
                 <td>
                   <form action="/artists/<%= artist._id %>" method="post">
                     <input type="submit" value="x">
