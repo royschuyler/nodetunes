@@ -1,32 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    <title>Albums</title>
+    <title>Artist Albums</title>
   </head>
   <body>
-    <h2>Search for an Album</h2>
-
-    <input type="seach">
-    <input type="submit" value="search">
-  </body>
-</html>
-
-
-<!doctype html>
-<html>
-  <head>
-    <title>Artists</title>
-  </head>
-  <body>
-
-    <input type="seach">
-    <input type="submit" value="search">
-
-
-                <h3><%= name %></h3>
-
-
-
-
+    <h3><%= name %></h3>
+    <p>Add an album for <%= name %> </p>
+      <form action="/album" method="post">
+        <div>
+          <label for="name">New album:</label>
+          <input name="albumName" type="text"/>
+          <input type='submit' value='Add'>
+        </div>
+    </form>
   </body>
 </html>
