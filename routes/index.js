@@ -14,6 +14,10 @@ if (!global.db) {
 
 //-------------------------------------------------------------------------
 
+router.get('/', function (req, res) {
+  res.render('templates/landing.ejs')
+})
+//-------------------------------------------------------------------------
 //DISPLAYS ARTISTS FROM MONGO DB
 router.get('/home', function (req, res) {
   // res.render('templates/home.ejs');
@@ -66,11 +70,29 @@ router.post('/artists/:id', function(req, res) {
     res.redirect('/artists')
   });
 
+//------------------------------------------------------------------------
+
+// router.get('/albums', function (req, res) {
+//   renderName = req.params.name
+//   res.render('templates/albums.ejs', {name: renderName})
+// })
+
 //-------------------------------------------------------------------------
 
 router.get('/albums/:name', function (req, res) {
-renderName = req.params.name
-  res.render('templates/albums.ejs', {name: renderName});
+    renderName = req.params.name
+    console.log(renderName)
+    var collection = global.db.collection('artists')
+    collection.find({name: renderName}).toArray(function (err, artists) {
+      formattedArtists = artists.map(function(artist) {
+      return {
+        _id: artist._id,
+        name: artist.name,
+      };
+    });
+    console.log(formattedArtists)
+    res.render('templates/albums.ejs', {name: renderName});
+  });
 });
 
 
